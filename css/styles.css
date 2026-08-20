@@ -1,0 +1,67 @@
+:root {/*Definición de variables globales en :root */
+  --fuente-h1: 'Press Start 2P', sans-serif;
+  --fuente-h2:  'VT323', sans-serif;
+  --fuente-principal: 'Roboto', sans-serif;
+  --color-fondo: #fbf1c7
+; /* Color de fondo principal para la página */
+  --color-fondo-oscuro: #7c6f64
+;
+  --color-texto: #3c3836
+; /* Color de texto general */
+  --color-acento: #076678
+; /* Color de acento (azul) para resaltar elementos específicos */
+  --color-texto-claro: #f9f5d7
+; /* Color de texto claro, usado sobre fondos ascuros */
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.header {
+  background-color: var(--color-fondo-oscuro);
+  color: var(--color-texto-claro);
+  text-align: left;
+  padding: 20px;
+}
+
+.header h1 {
+  font-family: var(--fuente-h1);
+  font-size: 2.5em; /* Ajusta el tamaño del texto principal para destacar el titulo */
+  margin: 0; /* Elimina el margen del título */
+}
+
+.nav {
+  margin: 20px;
+  padding: 0px;
+  border: 2px solid var(--color-acento);
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+.box {
+
+  margin: 20px;
+  padding: 10px;
+  border: 2px solid var(--color-acento);
+  box-sizing: border-box;
+}
+
+.box h2 {
+  font-family: var(--fuente-h2);
+  font-size: 2.5em;
+}
+
+.footer{
+  background-color: var(--color-fondo-oscuro);
+  color: var(--color-texto-claro);
+  text-align: left;
+  padding: 20px;
+  line-height: 1;
+}
+
