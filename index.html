@@ -15,8 +15,10 @@
 
 <body>
     <header class="header" id="inicio">
-        <h1>16bit</h1>
-        <p>Tienda de consolas, videojuegos y accesorios retro.</p>
+        <div class="marca">
+            <h1>16bit</h1>
+            <p class="subtitulo">Tienda de consolas, videojuegos y accesorios retro.</p>
+        </div>
     </header>
     <nav class="nav">
         <ul>
@@ -25,26 +27,40 @@
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
-    <section class="box" id="productos">
-        <h2>Productos destacados</h2>
-        <ul>
-            <li>
-                <img src="img/dreamcast.jpg" alt="Consola Sega Dreamcast" width="300">
-                <h3>Sega Dreamcast</h3>
-                <p>Consola retro Sega Dreamcast, incluye control original.</p>
-            </li>
-            <li>
-                <img src="img/dk-country-snes.jpg" alt="DK Country SNES" width="300">
-                <h3>Donkey Kong Country - Super Nintendo</h3>
-                <p>Juego para Super Nintendo Donkey Kong Country.</p>
-            </li>
-            <li>
-                <img src="img/control-gc-morado.jpg" alt="Control GC morado" width="300">
-                <h3>Control Nintendo Gamecube</h3>
-                <p>Control para Nintendo Gamecube original.</p>
-            </li>
-        </ul>
-    </section>
+    <main>
+        <section class="box" id="productos">
+            <h2>Productos destacados</h2>
+            <ul class="grid-productos">
+                <li>
+                    <figure>
+                        <div class="imagen-producto">
+                            <img src="img/dreamcast.jpg" alt="Consola Sega Dreamcast" width="300">
+                        </div>
+                        <figcaption>Consola retro Sega Dreamcast, incluye control original.</figcaption>
+                    </figure>
+                    <h3>Sega Dreamcast</h3>
+                </li>
+                <li>
+                    <figure>
+                        <div class="imagen-producto">
+                            <img src="img/dk-country-snes.jpg" alt="DK Country SNES" width="300">
+                        </div>
+                        <figcaption>Juego para Super Nintendo Donkey Kong Country.</figcaption>
+                    </figure>
+                    <h3>Donkey Kong Country - Super Nintendo</h3>
+                </li>
+                <li>
+                    <figure>
+                        <div class="imagen-producto">
+                            <img src="img/control-gc-morado.jpg" alt="Control GC morado" width="300">
+                        </div>
+                        <figcaption>Control para Nintendo Gamecube original.</figcaption>
+                    </figure>
+                    <h3>Control Nintendo Gamecube</h3>
+                </li>
+            </ul>
+        </section>
+    </main>
     <footer class="footer" id="contacto">
         <h2>Contacto</h2>
         <address>
