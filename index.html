@@ -2,72 +2,163 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>16bit</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=VT323&display=swap"
-        rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>16bit - Tienda de consolas, videojuegos y accesorios retro</title>
+
+  <!-- Bootstrap antes que el CSS propio: permite que las reglas propias
+       sobrescriban los estilos por defecto del framework sin necesitar mayor especificidad. -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=VT323&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <header class="header" id="inicio">
-        <div class="marca">
-            <h1>16bit</h1>
-            <p class="subtitulo">Tienda de consolas, videojuegos y accesorios retro.</p>
-        </div>
-    </header>
-    <nav class="nav">
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#productos">Productos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+
+  <!-- Navbar: incluye la marca y la navegación principal en un solo componente.
+       navbar-expand-md: el menú se muestra expandido desde tablet (768px) en adelante;
+       por debajo de ese ancho, colapsa detrás del botón hamburguesa. -->
+  <nav class="navbar navbar-expand-md header" id="inicio">
+    <div class="container-fluid">
+
+      <a class="navbar-brand marca" href="#inicio">
+        <h1 class="titulo-marca">16bit</h1>
+        <span class="subtitulo">Tienda de consolas, videojuegos y accesorios retro.</span>
+      </a>
+
+      <!-- data-bs-target apunta al id del contenedor colapsable de más abajo -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+        aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú de navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menuPrincipal">
+        <ul class="navbar-nav ms-md-auto">
+          <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
         </ul>
-    </nav>
-    <main>
-        <section class="box" id="productos">
-            <h2>Productos destacados</h2>
-            <ul class="grid-productos">
-                <li>
-                    <figure>
-                        <div class="imagen-producto">
-                            <img src="img/dreamcast.jpg" alt="Consola Sega Dreamcast" width="300">
-                        </div>
-                        <figcaption>Consola retro Sega Dreamcast, incluye control original.</figcaption>
-                    </figure>
-                    <h3>Sega Dreamcast</h3>
-                </li>
-                <li>
-                    <figure>
-                        <div class="imagen-producto">
-                            <img src="img/dk-country-snes.jpg" alt="DK Country SNES" width="300">
-                        </div>
-                        <figcaption>Juego para Super Nintendo Donkey Kong Country.</figcaption>
-                    </figure>
-                    <h3>Donkey Kong Country - Super Nintendo</h3>
-                </li>
-                <li>
-                    <figure>
-                        <div class="imagen-producto">
-                            <img src="img/control-gc-morado.jpg" alt="Control GC morado" width="300">
-                        </div>
-                        <figcaption>Control para Nintendo Gamecube original.</figcaption>
-                    </figure>
-                    <h3>Control Nintendo Gamecube</h3>
-                </li>
-            </ul>
-        </section>
-    </main>
-    <footer class="footer" id="contacto">
-        <h2>Contacto</h2>
-        <address>
-            <p>Dirección: Av. Los Alerces 123, Santiago, Chile</p>
-            <p>Email: <a href="mailto:contacto@16bit.cl">contacto@16bit.cl</a></p>
-        </address>
-    </footer>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Hero: carousel con autoplay. data-bs-ride inicia la reproducción automática
+       al cargar la página; data-bs-interval fija 3000ms (3s) entre cada slide. -->
+  <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <!-- Imágenes de placeholder: reemplazar por los banners definitivos -->
+      <div class="carousel-item active" data-bs-interval="3000">
+        <img src="https://placehold.co/1200x400?text=Hero+1" class="d-block w-100" alt="Banner retro 1">
+        <div class="carousel-caption d-none d-md-block">
+          <h2>Título del banner 1</h2>
+          <p>Texto descriptivo del banner 1.</p>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="3000">
+        <img src="https://placehold.co/1200x400?text=Hero+2" class="d-block w-100" alt="Banner retro 2">
+        <div class="carousel-caption d-none d-md-block">
+          <h2>Título del banner 2</h2>
+          <p>Texto descriptivo del banner 2.</p>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="3000">
+        <img src="https://placehold.co/1200x400?text=Hero+3" class="d-block w-100" alt="Banner retro 3">
+        <div class="carousel-caption d-none d-md-block">
+          <h2>Título del banner 3</h2>
+          <p>Texto descriptivo del banner 3.</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+
+  </div>
+
+  <main>
+    <section class="box" id="productos">
+      <h2>Productos destacados</h2>
+
+      <!-- Grid de productos: col-12 col-md-6 col-lg-4 = 1 columna en móvil,
+           2 en tablet, 3 en escritorio. El primer producto de la lista
+           lleva la etiqueta de oferta (ver #productos li:nth-child(1) en el CSS). -->
+      <ul class="grid-productos row">
+
+        <li class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <figure class="card-img-wrapper">
+              <img src="img/dreamcast.jpg" class="card-img-producto" alt="Consola Sega Dreamcast">
+            </figure>
+            <div class="card-body">
+              <h3 class="card-title">Sega Dreamcast</h3>
+              <p class="card-text">Consola retro Sega Dreamcast, incluye control original.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <figure class="card-img-wrapper">
+              <img src="img/dk-country-snes.jpg" class="card-img-producto" alt="DK Country SNES">
+            </figure>
+            <div class="card-body">
+              <h3 class="card-title">Donkey Kong Country - Super Nintendo</h3>
+              <p class="card-text">Juego para Super Nintendo Donkey Kong Country.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <figure class="card-img-wrapper">
+              <img src="img/control-gc-morado.jpg" class="card-img-producto" alt="Control GC morado">
+            </figure>
+            <div class="card-body">
+              <h3 class="card-title">Control Nintendo Gamecube</h3>
+              <p class="card-text">Control para Nintendo Gamecube original.</p>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer" id="contacto">
+    <h2>Contacto</h2>
+    <address>
+      <p>Dirección: Av. Los Alerces 123, Santiago, Chile</p>
+      <p>Email: <a href="mailto:contacto@16bit.cl">contacto@16bit.cl</a></p>
+    </address>
+  </footer>
+
+  <!-- Bundle al final del body: evita bloquear el renderizado del HTML
+       y asegura que el DOM ya exista cuando Bootstrap engancha su JS. -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

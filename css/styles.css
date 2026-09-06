@@ -1,3 +1,6 @@
+/* ============================================
+   1. VARIABLES
+   ============================================ */
 :root {
   /*Definición de variables globales en :root */
   --fuente-h1: 'Press Start 2P', sans-serif;
@@ -9,8 +12,18 @@
   --color-acento: #076678;
   --color-texto-claro: #f9f5d7;
   --color-oferta: #af3a03;
+
+  /* Escala de espaciado, base 8px */
+  --espacio-xs: 4px;
+  --espacio-sm: 8px;
+  --espacio-md: 16px;
+  --espacio-lg: 24px;
 }
 
+
+/* ============================================
+   2. RESET Y BASE
+   ============================================ */
 body {
   font-family: var(--fuente-principal);
   background-color: var(--color-fondo);
@@ -26,115 +39,128 @@ body {
   box-sizing: border-box;
 }
 
+
+/* ============================================
+   3. LAYOUT - NAVBAR
+   ============================================ */
 .header {
   background-color: var(--color-fondo-oscuro);
   color: var(--color-texto-claro);
-  padding: 16px 16px;
-  display: flex;
-  align-items: center;
+  padding: var(--espacio-sm) var(--espacio-md);
 }
 
-.header h1 {
+.navbar-brand.marca {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.titulo-marca {
   font-family: var(--fuente-h1);
-  font-size: 1.5em;
-  margin: 0;
+  font-size: clamp(1rem, 3vw, 1.5em);
+  color: var(--color-texto-claro);
 }
 
 .subtitulo {
   font-size: 0.9em;
   font-weight: lighter;
-  margin: 4px 0 0 0;
+  margin: var(--espacio-xs) 0 0 0;
   color: var(--color-texto-claro);
   opacity: 0.8;
 }
 
-.nav {
-  background-color: var(--color-fondo-oscuro);
-  margin: 0;
-  padding: 8px 16px;
-  border: none;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.nav ul {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav a {
+.navbar-nav .nav-link {
   color: var(--color-texto-claro);
-  text-decoration: none;
   font-size: 0.9em;
   border-radius: 24px;
-  padding: 4px;
+  padding: var(--espacio-xs) 12px;
   font-weight: bold;
   transition: 0.5s;
 }
 
-.nav a:hover {
+.navbar-nav .nav-link:hover {
   color: var(--color-texto);
   background-color: var(--color-fondo);
 }
 
-.nav a:focus {
-  border: 2px;
-  border-color: var(--color-acento);
-  border-style: solid;
+.navbar-nav .nav-link:focus {
+  border: 2px solid var(--color-acento);
   outline: none;
 }
 
+.navbar-toggler {
+  border-color: var(--color-texto-claro);
+  padding: var(--espacio-xs) var(--espacio-sm);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px var(--color-acento);
+}
+
+.navbar-toggler-icon {
+  filter: invert(1) grayscale(1) brightness(2);
+}
+
+
+/* ============================================
+   4. LAYOUT - HERO / CAROUSEL
+   ============================================ */
+.hero-carousel img {
+  height: 400px;
+  object-fit: cover;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 8%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: var(--color-acento);
+  border-radius: 50%;
+  padding: var(--espacio-md);
+  background-size: 50%;
+}
+
+.carousel-control-prev:focus .carousel-control-prev-icon,
+.carousel-control-next:focus .carousel-control-next-icon {
+  box-shadow: 0 0 0 3px var(--color-texto-claro);
+}
+
+
+/* ============================================
+   5. LAYOUT - SECCIÓN PRODUCTOS Y GRID
+   ============================================ */
 .box {
-  margin: 24px;
-  padding: 16px;
+  margin: var(--espacio-lg);
+  padding: var(--espacio-md);
 }
 
 .box h2 {
   font-family: var(--fuente-h2);
-  font-size: 2.5em;
+  font-size: clamp(1.8rem, 5vw, 2.5em);
 }
 
 #productos h3 {
   font-size: 1.3em;
 }
 
-#productos li:nth-child(1) {
-  color: var(--color-oferta);
-  position: relative;
-}
-
-#productos li:nth-child(1)::before {
-  content: "¡Oferta!";
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background-color: var(--color-oferta);
-  color: var(--color-texto-claro);
-  font-size: 0.7em;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-
 .grid-productos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+.grid-productos.row {
+  --bs-gutter-x: var(--espacio-lg);
+  --bs-gutter-y: var(--espacio-lg);
+}
+
 .grid-productos li {
-  background-color: var(--color-fondo);
-  border: 2px solid var(--color-acento);
-  border-radius: 6px;
-  padding: 8px;
-  text-align: center;
   transition: 0.5s;
+  padding: var(--espacio-sm);
 }
 
 .grid-productos li:hover {
@@ -142,34 +168,65 @@ body {
   cursor: pointer;
 }
 
-.imagen-producto img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
+
+/* ============================================
+   6. COMPONENTES - CARDS DE PRODUCTO
+   ============================================ */
+.grid-productos .card {
+  background-color: var(--color-fondo);
+  border: 2px solid var(--color-acento);
+  border-radius: 6px;
+  position: relative;
+  z-index: 1;
 }
 
-.grid-productos figcaption {
-  font-size: 0.85em;
-  margin-top: 8px;
-}
-
-.grid-productos h3 {
-  margin-top: 8px;
-}
-
-.grid-productos figure {
+.card-img-wrapper {
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-fondo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espacio-md);
   margin: 0;
 }
 
+.card-img-producto {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+#productos li:nth-child(1) .card::before {
+  content: "¡Oferta!";
+  position: absolute;
+  top: var(--espacio-sm);
+  right: var(--espacio-sm);
+  background-color: var(--color-oferta);
+  color: var(--color-texto-claro);
+  font-size: 0.7em;
+  font-weight: bold;
+  padding: var(--espacio-xs) var(--espacio-sm);
+  border-radius: 4px;
+  z-index: 2;
+}
+
+#productos li:nth-child(1) .card-title {
+  color: var(--color-oferta);
+}
+
+
+/* ============================================
+   7. LAYOUT - FOOTER
+   ============================================ */
 .footer {
   background-color: var(--color-fondo-oscuro);
   color: var(--color-texto-claro);
   text-align: left;
-  padding: 16px;
+  padding: var(--espacio-md);
   line-height: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--espacio-md);
 }
 
 .footer h2 {
@@ -180,10 +237,4 @@ body {
 .footer p {
   margin: 0;
   padding: 0;
-}
-
-@media (max-width: 600px) {
-  .grid-productos {
-    grid-template-columns: 1fr;
-  }
 }
