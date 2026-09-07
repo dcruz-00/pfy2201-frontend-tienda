@@ -39,6 +39,11 @@ body {
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 
 /* ============================================
    3. LAYOUT - NAVBAR
@@ -54,6 +59,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   line-height: 1.2;
+  max-width: 100%;
 }
 
 .titulo-marca {
@@ -68,6 +74,8 @@ body {
   margin: var(--espacio-xs) 0 0 0;
   color: var(--color-texto-claro);
   opacity: 0.8;
+  white-space: normal;
+  max-width: 100%;
 }
 
 .navbar-nav .nav-link {
