@@ -1,0 +1,84 @@
+[
+    {
+        "id": 1,
+        "nombre": "Sega Dreamcast",
+        "descripcion": "Consola retro Sega Dreamcast, incluye control original.",
+        "precio": 110000,
+        "categoria": "consolas",
+        "imagen": "assets/img/dreamcast.png",
+        "alt": "Consola Sega Dreamcast",
+        "oferta": true
+    },
+    {
+        "id": 2,
+        "nombre": "Donkey Kong Country - Super Nintendo",
+        "descripcion": "Juego para Super Nintendo Donkey Kong Country.",
+        "precio": 60000,
+        "categoria": "juegos",
+        "imagen": "assets/img/dk-country-snes.png",
+        "alt": "DK Country SNES"
+    },
+    {
+        "id": 3,
+        "nombre": "Control Nintendo Gamecube",
+        "descripcion": "Control para Nintendo Gamecube original.",
+        "precio": 27000,
+        "categoria": "accesorios",
+        "imagen": "assets/img/control-gc-morado.png",
+        "alt": "Control GC morado"
+    },
+    {
+        "id": 4,
+        "nombre": "Nintendo 64",
+        "descripcion": "Consola retro Nintendo 64, incluye control original.",
+        "precio": 165000,
+        "categoria": "consolas",
+        "imagen": "assets/img/n64.png",
+        "alt": "Consola Nintendo 64"
+    },
+    {
+        "id": 5,
+        "nombre": "Super Mario World - Super Nintendo",
+        "descripcion": "Cartucho original Super Mario World para Super Nintendo.",
+        "precio": 90000,
+        "categoria": "juegos",
+        "imagen": "assets/img/super-mario-w-snes.png",
+        "alt": "Cartucho Super Mario World"
+    },
+    {
+        "id": 6,
+        "nombre": "Control PlayStation 1",
+        "descripcion": "Control original PlayStation 1 (DualShock).",
+        "precio": 30000,
+        "categoria": "accesorios",
+        "imagen": "assets/img/control-psx.png",
+        "alt": "Control PlayStation 1"
+    },
+    {
+        "id": 7,
+        "nombre": "Game Boy Color",
+        "descripcion": "Consola portátil retro, pantalla original.",
+        "precio": 120000,
+        "categoria": "consolas",
+        "imagen": "assets/img/gbc.png",
+        "alt": "Consola portátil Game Boy Color"
+    },
+    {
+        "id": 8,
+        "nombre": "Sonic the Hedgehog - Mega Drive",
+        "descripcion": "Cartucho original para Sega Mega Drive.",
+        "precio": 80000,
+        "categoria": "juegos",
+        "imagen": "assets/img/sonic-mega-drive.png",
+        "alt": "Cartucho Sonic the Hedgehog para Mega Drive"
+    },
+    {
+        "id": 9,
+        "nombre": "Control NES clásico",
+        "descripcion": "Control original para Nintendo NES.",
+        "precio": 60000,
+        "categoria": "accesorios",
+        "imagen": "assets/img/control-nes.png",
+        "alt": "Control clásico de Nintendo NES"
+    }
+]
