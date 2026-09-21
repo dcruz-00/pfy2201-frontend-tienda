@@ -84,6 +84,7 @@ html, body {
   border-radius: 24px;
   padding: var(--espacio-xs) 12px;
   font-weight: bold;
+  white-space: nowrap;
   /* "transition: none" a propósito (Bootstrap trae una de 0,15 s en .nav-link): al animar a la
      vez el texto (claro → oscuro) y el fondo (oscuro → crema), a mitad de camino ambos quedan
      en tonos medios y el contraste cae a ~1,3:1. El cambio inmediato evita esos colores. */
