@@ -17,7 +17,7 @@
     href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=VT323&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
@@ -42,8 +42,34 @@
       <div class="collapse navbar-collapse" id="menuPrincipal">
         <ul class="navbar-nav ms-md-auto">
           <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+
+          <!-- data-categoria: el JS lee este atributo para filtrar el catálogo
+               (main.js, inicializarCategorias). "todas" quita el filtro. -->
+          <li class="nav-item"><a class="nav-link" href="#productos" data-categoria="todas">Productos</a></li>
+
+          <!-- Categorías simuladas: dropdown de Bootstrap. dropdown-menu-md-end alinea
+               el menú a la derecha desde tablet para que no se salga de la pantalla. -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">Categorías</a>
+            <ul class="dropdown-menu dropdown-menu-md-end">
+              <li><a class="dropdown-item" href="#productos" data-categoria="todas">Todas</a></li>
+              <li><a class="dropdown-item" href="#productos" data-categoria="consolas">Consolas</a></li>
+              <li><a class="dropdown-item" href="#productos" data-categoria="juegos">Juegos</a></li>
+              <li><a class="dropdown-item" href="#productos" data-categoria="accesorios">Accesorios</a></li>
+            </ul>
+          </li>
+
           <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+
+          <!-- Contador del carrito: lo actualiza main.js (renderizarCarrito).
+               El texto oculto da contexto a quien usa lector de pantalla. -->
+          <li class="nav-item">
+            <a class="nav-link" href="#carrito">Carrito
+              <span class="badge rounded-pill badge-carrito" id="contadorCarrito">0</span>
+              <span class="visually-hidden">artículos en el carrito</span>
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -54,7 +80,10 @@
        al cargar la página; data-bs-interval se centraliza aquí (3000ms) y se
        hereda en todos los slides, en vez de repetirse en cada .carousel-item.
        data-bs-pause="hover" detiene el avance automático mientras el cursor
-       está sobre el carrusel, dando tiempo a leer o interactuar. -->
+       está sobre el carrusel, dando tiempo a leer o interactuar. 
+
+       Las imágenes del banner son decorativas: alt="" hace que los lectores de pantalla
+       las omitan en lugar de leer un texto que no aporta información. -->
   <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel" data-bs-interval="3000"
     data-bs-pause="hover">
 
@@ -67,13 +96,13 @@
 
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="img/hero-1.png" class="d-block w-100" alt="Arte retro de Chrono Trigger">
+        <img src="assets/img/hero-1.png" class="d-block w-100" alt="">
       </div>
       <div class="carousel-item">
-        <img src="img/hero-2.png" class="d-block w-100" alt="Escena retro de Super Mario Bros">
+        <img src="assets/img/hero-2.png" class="d-block w-100" alt="">
       </div>
       <div class="carousel-item">
-        <img src="img/hero-3.png" class="d-block w-100" alt="Arte retro de The Legend of Zelda">
+        <img src="assets/img/hero-3.png" class="d-block w-100" alt="">
       </div>
     </div>
 
@@ -93,110 +122,59 @@
       <div class="container">
         <h2>Productos destacados</h2>
 
-        <!-- Formulario buscador: dispara el evento "submit" pedido en la
-             actividad. preventDefault() evita que la página recargue,
-             y el buscador filtra las tarjetas ya renderizadas por nombre. -->
+        <!-- Formulario buscador: dispara el evento "submit". preventDefault() evita
+             que la página recargue; el JS filtra la lista de productos en memoria. -->
         <form class="buscador-productos" id="formBuscador" role="search">
           <label for="buscarProducto" class="visually-hidden">Buscar producto</label>
           <input type="search" id="buscarProducto" name="buscarProducto" class="form-control"
             placeholder="Buscar por nombre (ej. Dreamcast, Mario...)" autocomplete="off">
-          <button type="submit" class="btn btn-buscar">Buscar</button>
-          <button type="button" class="btn btn-agregar" id="btnAgregarProducto">+ Agregar producto destacado</button>
+          <button type="submit" class="btn btn-accion">Buscar</button>
         </form>
-        <p id="mensajeBusqueda" class="mensaje-busqueda" aria-live="polite"></p>
 
-        <!-- Grid de productos: col-12 col-md-6 col-lg-4 = 1 columna en móvil,
-             2 en tablet, 3 en escritorio. El primer producto de la lista
-             lleva la etiqueta de oferta (ver #productos li:nth-child(1) en el CSS).
-             Los productos con id="prod-N" y data-precio son el punto de anclaje
-             para la manipulación del DOM y el buscador de la semana 5. -->
-        <ul class="grid-productos row" id="listaProductos">
+        <!-- Región de estado del catálogo: aquí el JS muestra "cargando", errores con
+             botón para reintentar, resultados de búsqueda y el caso "sin resultados".
+             aria-live="polite" hace que los lectores de pantalla anuncien los cambios. -->
+        <div id="estadoCatalogo" class="estado" aria-live="polite"></div>
 
-          <li class="col-12 col-md-6 col-lg-4" id="prod-1" data-precio="110000">
-            <div class="card h-100">
-              <figure class="card-img-wrapper">
-                <img src="img/dreamcast.png" class="card-img-producto" alt="Consola Sega Dreamcast">
-              </figure>
-              <div class="card-body">
-                <h3 class="card-title">Sega Dreamcast</h3>
-                <p class="card-text">Consola retro Sega Dreamcast, incluye control original.</p>
-              </div>
-            </div>
-          </li>
-
-          <li class="col-12 col-md-6 col-lg-4" id="prod-2" data-precio="60000">
-            <div class="card h-100">
-              <figure class="card-img-wrapper">
-                <img src="img/dk-country-snes.png" class="card-img-producto" alt="DK Country SNES">
-              </figure>
-              <div class="card-body">
-                <h3 class="card-title">Donkey Kong Country - Super Nintendo</h3>
-                <p class="card-text">Juego para Super Nintendo Donkey Kong Country.</p>
-              </div>
-            </div>
-          </li>
-
-          <li class="col-12 col-md-6 col-lg-4" id="prod-3" data-precio="27000">
-            <div class="card h-100">
-              <figure class="card-img-wrapper">
-                <img src="img/control-gc-morado.png" class="card-img-producto" alt="Control GC morado">
-              </figure>
-              <div class="card-body">
-                <h3 class="card-title">Control Nintendo Gamecube</h3>
-                <p class="card-text">Control para Nintendo Gamecube original.</p>
-              </div>
-            </div>
-          </li>
-
-          <li class="col-12 col-md-6 col-lg-4" id="prod-4" data-precio="165000">
-            <div class="card h-100">
-              <figure class="card-img-wrapper">
-                <img src="img/n64.png" class="card-img-producto" alt="Consola Nintendo 64">
-              </figure>
-              <div class="card-body">
-                <h3 class="card-title">Nintendo 64</h3>
-                <p class="card-text">Consola retro Nintendo 64, incluye control original.</p>
-              </div>
-            </div>
-          </li>
-
-          <li class="col-12 col-md-6 col-lg-4" id="prod-5" data-precio="90000">
-            <div class="card h-100">
-              <figure class="card-img-wrapper">
-                <img src="img/super-mario-w-snes.png" class="card-img-producto" alt="Cartucho Super Mario World">
-              </figure>
-              <div class="card-body">
-                <h3 class="card-title">Super Mario World - Super Nintendo</h3>
-                <p class="card-text">Cartucho original Super Mario World para Super Nintendo.</p>
-              </div>
-            </div>
-          </li>
-
-          <li class="col-12 col-md-6 col-lg-4" id="prod-6" data-precio="30000">
-            <div class="card h-100">
-              <figure class="card-img-wrapper">
-                <img src="img/control-psx.png" class="card-img-producto" alt="Control PlayStation 1">
-              </figure>
-              <div class="card-body">
-                <h3 class="card-title">Control PlayStation 1</h3>
-                <p class="card-text">Control original PlayStation 1 (DualShock).</p>
-              </div>
-            </div>
-          </li>
-
-        </ul>
+        <!-- Grid de productos: ahora se genera desde assets/data/productos.json con Fetch.
+             col-12 col-md-6 col-lg-4 (en cada <li> creado por JS) = 1 columna en móvil,
+             2 en tablet, 3 en escritorio. aria-busy avisa que el contenido está cargando. -->
+        <ul class="grid-productos row" id="listaProductos" aria-busy="true"></ul>
+        <noscript>
+          <p>Para ver el catálogo necesitas habilitar JavaScript en tu navegador.</p>
+        </noscript>
       </div>
     </section>
 
-    <!-- Sección Fetch API: los comentarios se cargan bajo demanda desde
-         FakeStore API (https://fakestoreapi.com/), tal como sugiere la guía
-         de la semana. El contenido se genera 100% con JavaScript. -->
+    <!-- Carrito: área designada para el resumen. El JS dibuja las líneas en #listaCarrito
+         y actualiza el total. tabindex="-1" permite devolver el foco al título por código
+         cuando una acción elimina el botón que el usuario tenía seleccionado. -->
+    <section class="box" id="carrito">
+      <div class="container">
+        <h2 id="tituloCarrito" tabindex="-1">Tu carrito</h2>
+        <p id="carritoVacio" class="carrito-vacio">Aún no agregas productos. Elige alguno del catálogo.</p>
+        <ul class="lista-carrito" id="listaCarrito"></ul>
+        <div class="resumen-carrito" id="resumenCarrito" hidden>
+          <p class="resumen-total">Total (<span id="cantidadCarrito">0 artículos</span>):
+            <strong id="totalCarrito">$0</strong>
+          </p>
+          <button type="button" class="btn btn-secundario" id="btnVaciarCarrito">Vaciar carrito</button>
+        </div>
+        <!-- Mensaje oculto visualmente, solo para lectores de pantalla: confirma cada producto agregado -->
+        <p id="anuncioCarrito" class="visually-hidden" role="status"></p>
+      </div>
+    </section>
+
+    <!-- Sección Fetch API externa: las opiniones se cargan bajo demanda desde
+         FakeStore API (https://fakestoreapi.com/). Comparte con el catálogo la misma
+         función de red (obtenerJSON), por lo que hereda timeout y reintentos. -->
     <section class="box" id="opiniones">
       <div class="container">
         <h2>Opiniones de la comunidad</h2>
         <p>Cargamos reseñas reales de compradores en tiempo real usando la Fetch API.</p>
-        <button type="button" class="btn btn-agregar" id="btnCargarOpiniones">Cargar opiniones</button>
-        <ul class="lista-opiniones" id="listaOpiniones" aria-live="polite"></ul>
+        <button type="button" class="btn btn-accion" id="btnCargarOpiniones">Cargar opiniones</button>
+        <div id="estadoOpiniones" class="estado" aria-live="polite"></div>
+        <ul class="lista-opiniones" id="listaOpiniones"></ul>
       </div>
     </section>
   </main>
@@ -216,7 +194,7 @@
     crossorigin="anonymous"></script>
 
   <!-- JS del proyecto -->
-  <script src="js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 
 </body>
 
